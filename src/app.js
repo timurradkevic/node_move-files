@@ -6,13 +6,9 @@ function app() {
   const params = process.argv.slice(2);
 
   if (params.length !== 2) {
-    console.error(new Error('Function works only with 2 parameters'));
-
-    process.exit(1);
+    throw new Error('Function works only with 2 parameters');
   } else if (!fs.existsSync(params[0])) {
-    console.error(new Error('This file or destination does not exist'));
-
-    process.exit(1);
+    throw new Error('This file or destination does not exist');
   } else {
     const sourcePath = params[0];
     let destPath = params[1];
@@ -21,10 +17,7 @@ function app() {
       if (fs.existsSync(destPath) && fs.lstatSync(destPath).isDirectory()) {
         destPath = path.join(destPath, path.basename(sourcePath));
       } else {
-        console.error(new Error('This file or destination does not exist'));
-
-        process.exit(1);
-        // return;
+        throw new Error('This file or destination does not exist');
       }
     } else if (
       fs.existsSync(destPath) &&
@@ -35,10 +28,7 @@ function app() {
       const destDir = path.dirname(destPath);
 
       if (!fs.existsSync(destDir)) {
-        console.error(new Error('This file or destination does not exist'));
-
-        process.exit(1);
-        // return;
+        throw new Error('This file or destination does not exist');
       }
     }
 
