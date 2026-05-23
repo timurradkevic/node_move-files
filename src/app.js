@@ -8,11 +8,11 @@ function app() {
   if (params.length !== 2) {
     console.error(new Error('Function works only with 2 parameters'));
 
-    // process.exit(1);
+    process.exit(1);
   } else if (!fs.existsSync(params[0])) {
     console.error(new Error('This file or destination does not exist'));
 
-    // process.exit(1);
+    process.exit(1);
   } else {
     const sourcePath = params[0];
     let destPath = params[1];
@@ -23,8 +23,8 @@ function app() {
       } else {
         console.error(new Error('This file or destination does not exist'));
 
-        // process.exit(1);
-        return;
+        process.exit(1);
+        // return;
       }
     } else if (
       fs.existsSync(destPath) &&
@@ -37,8 +37,8 @@ function app() {
       if (!fs.existsSync(destDir)) {
         console.error(new Error('This file or destination does not exist'));
 
-        // process.exit(1);
-        return;
+        process.exit(1);
+        // return;
       }
     }
 
